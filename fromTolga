@@ -1,0 +1,68 @@
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
+
+class lexicalAnalyser{
+    public static void main(String[] args) throws IOException {
+
+        File file = new File("C:\\Users\\mtolg\\OneDrive\\Masaüstü\\Code\\K\\Principles_Project\\inputs.txt");
+        Scanner sc = new Scanner(file);
+        int k = 0;
+
+        while (sc.hasNextLine()) {
+            k++;
+            String line = sc.nextLine();
+            for(int i=0; i< line.length(); i++){
+                System.out.print(checkChar(line.charAt(i), k, i));
+            }
+            System.out.println("*************************");
+        }
+    }
+
+    public static String checkChar(char c, int i, int k) {
+        String result = "";
+        switch (c){
+            case '(':
+            result = leftP(i, k);
+            break;
+            case ')':
+            result = rightP(i, k);
+            break;
+            case '{':
+            result = leftCurlyB(i, k);
+            break;
+            case '}':
+            result = rightCurlyB(i, k);
+            break;
+            case '[':
+            result = leftSquareB(i, k);
+            break;
+            case ']':
+            result = rightSquareB(i, k);
+            break;
+        }
+        
+        
+        return result;
+    }
+
+    public static String leftP(int i, int k){
+        return ("LEFTPAR " + i + " : " + k + "\n");
+    }
+    public static String rightP(int i, int k){
+        return ("RIGHTPAR " + i + " : " + k + "\n");
+    }
+    public static String leftSquareB(int i, int k){
+        return ("LEFTSQUAREB " + i + " : " + k + "\n");
+    }
+    public static String rightSquareB(int i, int k){
+        return ("RIGHTSQUAREB " + i + " : " + k + "\n");
+    }
+    public static String leftCurlyB(int i, int k){
+        return ("LEFTCURLYB " + i + " : " + k + "\n");
+    }
+    public static String rightCurlyB(int i, int k){
+        return ("RIGHTCURLYB " + i + " : " + k + "\n");
+    }
+
+}
